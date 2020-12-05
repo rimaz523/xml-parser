@@ -1,4 +1,9 @@
-﻿using MediatR;
+﻿using Application.Common.Processors.Interfaces;
+using AutoMapper;
+using Domain.Entities;
+using MediatR;
+using System.Linq;
+using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -11,12 +16,31 @@ namespace Application.ExpenseClaims.Commands.CreateExpenseClaim
 
     public class CreateExpenseClaimCommandHandler : IRequestHandler<CreateExpenseClaimCommand, ExpenseClaimResponseDto>
     {
+        private readonly IXmlProcessor _xmlProcessor;
+        private readonly IMapper _mapper;
+        public CreateExpenseClaimCommandHandler
+        (
+            IXmlProcessor xmlProcessor,
+            IMapper mapper
+        )
+        {
+            _xmlProcessor = xmlProcessor;
+            _mapper = mapper;
+        }
+
         public async Task<ExpenseClaimResponseDto> Handle(CreateExpenseClaimCommand request, CancellationToken cancellationToken)
         {
-            return new ExpenseClaimResponseDto
+            var expenseClaim = new ExpenseClaim();
+            PropertyInfo[] properties = typeof(ExpenseClaim).GetProperties();
+            foreach (PropertyInfo property in properties)
             {
-                Message = "works in Mediatr!"
-            };
+                if (property.CustomAttributes.Count() > 0)
+                {
+                    var xmlTag = property.CustomAttributes.First().ConstructorArguments.First().Value.ToString();
+                    property.SetValue(expenseClaim, _xmlProcessor.GetTagValue(xmlTag, request.Message));
+                }
+            }
+            return _mapper.Map<ExpenseClaimResponseDto>(expenseClaim);
         }
     }
 }
