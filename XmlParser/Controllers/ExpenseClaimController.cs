@@ -1,11 +1,13 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Application.ExpenseClaims.Commands.CreateExpenseClaim;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using System.Threading.Tasks;
 
 namespace XmlParser.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class ExpenseClaimController : ControllerBase
+    public class ExpenseClaimController : ApiControllerBase
     {
         private readonly ILogger<ExpenseClaimController> _logger;
 
@@ -15,9 +17,9 @@ namespace XmlParser.Controllers
         }
 
         [HttpPost]
-        public ActionResult<string> Post()
+        public async Task<ActionResult<ExpenseClaimResponseDto>> Post(CreateExpenseClaimCommand command)
         {
-            return "works!";
+            return await Mediator.Send(command);
         }
     }
 }
