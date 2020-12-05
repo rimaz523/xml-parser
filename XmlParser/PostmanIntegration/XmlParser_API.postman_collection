@@ -1,0 +1,63 @@
+{
+	"info": {
+		"_postman_id": "e57dec81-a044-4f49-88be-b941ab8bc5b8",
+		"name": "XmlParser API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "ExpenseClaim",
+			"item": [
+				{
+					"name": "Parse Expense Claim",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "96278048-d0a2-4655-ae4b-e07b4d262cf8",
+								"exec": [
+									"pm.test(\"Check Response code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"message\": \"Hi Yvaine,\\r\\nPlease create an expense claim for the below. Relevant details are marked up as requested...\\r\\n<expense>\\r\\n<cost_centre>DEV002</cost_centre>\\r\\n<total>1024.01</total>\\r\\n<payment_method>personal card</payment_method>\\r\\n</expense>\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{protocol}}://{{domain}}/{{apiRoute}}/expenseclaim",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"{{apiRoute}}",
+								"expenseclaim"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Reservation",
+			"item": [],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
