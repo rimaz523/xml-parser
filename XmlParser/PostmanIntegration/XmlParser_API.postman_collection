@@ -49,6 +49,48 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Parse Expense Claim - Empty Message - Get Validation Errors",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "131091c1-800f-4c7e-bd01-21c4d9e3a1af",
+								"exec": [
+									"pm.test(\"Check Response code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"message\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{protocol}}://{{domain}}/{{apiRoute}}/expenseclaim",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"{{apiRoute}}",
+								"expenseclaim"
+							]
+						}
+					},
+					"response": []
 				}
 			],
 			"protocolProfileBehavior": {}
