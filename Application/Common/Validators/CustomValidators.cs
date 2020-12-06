@@ -1,5 +1,8 @@
 ﻿using Application.Common.Processors.Interfaces;
 using FluentValidation;
+using System;
+using System.Globalization;
+
 namespace Application.Common.Validators
 {
     public static class CustomValidators
@@ -22,5 +25,36 @@ namespace Application.Common.Validators
             })
             .WithMessage("'{PropertyName}' is not well formed XML.");
         }
+
+        public static IRuleBuilderOptions<T, string> IsValidNumber<T>(this IRuleBuilder<T, string> ruleBuilder, IXmlProcessor xmlProcessor, string tagName)
+        {
+            return ruleBuilder.Must((rootObject, value, context) =>
+            {
+                context.MessageFormatter.AppendArgument("TagName", tagName);
+                var tagContent = xmlProcessor.GetTagContent(tagName, value);
+                if (string.IsNullOrEmpty(tagContent))
+                {
+                    return true;
+                }
+                return double.TryParse(tagContent, out _);
+            })
+            .WithMessage("'{PropertyName}' has '{TagName}' content which is an invalid number.");
+        }
+
+        public static IRuleBuilderOptions<T, string> IsValidDateFormat<T>(this IRuleBuilder<T, string> ruleBuilder, IXmlProcessor xmlProcessor, string tagName)
+        {
+            return ruleBuilder.Must((rootObject, value, context) =>
+            {
+                context.MessageFormatter.AppendArgument("TagName", tagName);
+                var tagContent = xmlProcessor.GetTagContent(tagName, value);
+                if (string.IsNullOrEmpty(tagContent))
+                {
+                    return true;
+                }
+                return DateTime.TryParse(tagContent, out _);
+            })
+            .WithMessage("'{PropertyName}' has '{TagName}' content which is an invalid date format.");
+        }
+
     }
 }

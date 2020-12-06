@@ -37,7 +37,7 @@ namespace Application.ExpenseClaims.Commands.CreateExpenseClaim
                 if (property.CustomAttributes.Count() > 0)
                 {
                     var xmlTag = property.CustomAttributes.First().ConstructorArguments.First().Value.ToString();
-                    property.SetValue(expenseClaim, _xmlProcessor.GetTagValue(xmlTag, request.Message));
+                    property.SetValue(expenseClaim, _xmlProcessor.GetTagContent(xmlTag, request.Message));
                 }
             }
             return _mapper.Map<ExpenseClaimResponseDto>(expenseClaim);

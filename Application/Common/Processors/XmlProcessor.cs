@@ -20,7 +20,7 @@ namespace Application.Common.Processors
             return true;
         }
 
-        public string GetTagValue(string tag, string xmlContent)
+        public string GetTagContent(string tag, string xmlContent)
         {
             var openingTag = $"<{tag}>";
             var closingTag = $"</{tag}>";

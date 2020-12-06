@@ -16,7 +16,8 @@ namespace Application.ExpenseClaims.Commands.CreateExpenseClaim
                 .NotEmpty()
                 .MaximumLength(1000)
                 .IsWellFormedXml(xmlProcessor)
-                .HasXmlTag(xmlProcessor, "total");
+                .HasXmlTag(xmlProcessor, "total")
+                .IsValidNumber(xmlProcessor, "total");
         }
     }
 }

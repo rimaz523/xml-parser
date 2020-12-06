@@ -14,7 +14,8 @@ namespace Application.Reservations.Commands.CreateReservation
             RuleFor(expenseClaimCommand => expenseClaimCommand.Message)
                 .NotEmpty()
                 .MaximumLength(1000)
-                .IsWellFormedXml(xmlProcessor);
+                .IsWellFormedXml(xmlProcessor)
+                .IsValidDateFormat(xmlProcessor, "date");
         }
     }
 }

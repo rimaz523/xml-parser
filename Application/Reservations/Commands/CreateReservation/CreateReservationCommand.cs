@@ -37,7 +37,7 @@ namespace Application.Reservations.Commands.CreateReservation
                 if (property.CustomAttributes.Count() > 0)
                 {
                     var xmlTag = property.CustomAttributes.First().ConstructorArguments.First().Value.ToString();
-                    property.SetValue(reservation, _xmlProcessor.GetTagValue(xmlTag, request.Message));
+                    property.SetValue(reservation, _xmlProcessor.GetTagContent(xmlTag, request.Message));
                 }
             }
             return _mapper.Map<ReservationResponseDto>(reservation);

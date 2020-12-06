@@ -51,6 +51,48 @@
 					"response": []
 				},
 				{
+					"name": "Parse Expense Claim - Non Numerical Total",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "74305bf2-815f-47fb-82f3-ad830787d766",
+								"exec": [
+									"pm.test(\"Check Response code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"message\": \"Hi Yvaine,\\r\\nPlease create an expense claim for the below. Relevant details are marked up as requested...\\r\\n<expense>\\r\\n<cost_centre>DEV002</cost_centre>\\r\\n<total>Test</total>\\r\\n<payment_method>personal card</payment_method>\\r\\n</expense>\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{protocol}}://{{domain}}/{{apiRoute}}/expenseclaim",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"{{apiRoute}}",
+								"expenseclaim"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Parse Expense Claim - Empty Message - Get Validation Errors",
 					"event": [
 						{
@@ -119,7 +161,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"message\": \"Hi Antoine,\\nPlease create a reservation at the <vendor>Viaduct Steakhouse</vendor> our\\n<description>development team’s project end celebration dinner</description> on <date>Tuesday 27 April 2017</date>. We expect to arrive around 7.15pm. Approximately 12 people but I’ll\\nconfirm exact numbers closer to the day.\\nRegards,\\nIvan\"\r\n}",
+							"raw": "{\r\n    \"message\": \"Hi Antoine,\\nPlease create a reservation at the <vendor>Viaduct Steakhouse</vendor> our\\n<description>development team’s project end celebration dinner</description> on <date>Thursday 27 April 2017</date>. We expect to arrive around 7.15pm. Approximately 12 people but I’ll\\nconfirm exact numbers closer to the day.\\nRegards,\\nIvan\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
