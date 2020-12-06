@@ -6,6 +6,7 @@ This is an API solution that has two endpoints to parse xml messages and return 
 ## Clean Architecture pattern is used to build this solution along with the following technologies :
  * .Net Core 5
  * CQRS with MediatR
+ * API inputs validated using FluentValidator
  * Domain - Dto mapping using AutoMapper
 
 
@@ -14,8 +15,8 @@ This is an API solution that has two endpoints to parse xml messages and return 
 ### Scenario
 A client has a new requirement to import data from text received via email.
 The data will either be:
-• Embedded as ‘islands’ of XML-like content
-• Marked up using XML style opening and closing tags
+* Embedded as ‘islands’ of XML-like content
+* Marked up using XML style opening and closing tags
 
 
 ### The following text illustrates this:
@@ -38,19 +39,14 @@ confirm exact numbers closer to the day.
 Regards,
 Ivan`
 
-### Your task is to write a REST service that:
-• Accepts a block of text
-• Extracts the relevant data
-• Calculate the GST and total excluding GST based on the extracted <total> (it includes GST)
-• Makes the extracted and calculated data available to the service’s client
-This is a test exercise. Anything not explicitly specified in this document is open to the candidate’s
-interpretation. This includes the style and content of the web service messages, coding standards and
-application structure.
+### Write a REST service that:
+* Accepts a block of text
+* Extracts the relevant data
+* Calculate the GST and total excluding GST based on the extracted <total> (it includes GST)
+* Makes the extracted and calculated data available to the service’s client
  
 ### Failure Conditions
 The following failure conditions should be detected and made available to the client:
-• Opening tags that have no corresponding closing tag. In this case the whole message should be
-rejected.
-• Missing <total>. In this case the whole message should be rejected.
-• Missing <cost_centre>. In this case the ‘cost centre’ field in the output should be defaulted to
-‘UNKNOWN’.
+* Opening tags that have no corresponding closing tag. In this case the whole message should be rejected.
+* Missing <total>. In this case the whole message should be rejected.
+* Missing <cost_centre>. In this case the ‘cost centre’ field in the output should be defaulted to ‘UNKNOWN’.
