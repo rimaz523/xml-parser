@@ -3,11 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30709.64
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XmlParser", "XmlParser\XmlParser.csproj", "{65B181BC-4DA6-48BA-A788-57EA62E5DF9F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XmlParser", "XmlParser\XmlParser.csproj", "{65B181BC-4DA6-48BA-A788-57EA62E5DF9F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{9F363DAA-9BFD-49D1-AD71-BA6EAC2B2B95}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{9F363DAA-9BFD-49D1-AD71-BA6EAC2B2B95}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "Application\Application.csproj", "{A437BE46-8479-466D-85AB-94EB60024EC6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "Application\Application.csproj", "{A437BE46-8479-466D-85AB-94EB60024EC6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{64F8A54B-7601-4B9E-9FFE-AD4C78CEF455}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApplicationUnitTests", "ApplicationUnitTests\ApplicationUnitTests.csproj", "{038A1DE4-2081-477B-BF7A-67C802F1C6B4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,9 +31,16 @@ Global
 		{A437BE46-8479-466D-85AB-94EB60024EC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A437BE46-8479-466D-85AB-94EB60024EC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A437BE46-8479-466D-85AB-94EB60024EC6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{038A1DE4-2081-477B-BF7A-67C802F1C6B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{038A1DE4-2081-477B-BF7A-67C802F1C6B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{038A1DE4-2081-477B-BF7A-67C802F1C6B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{038A1DE4-2081-477B-BF7A-67C802F1C6B4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{038A1DE4-2081-477B-BF7A-67C802F1C6B4} = {64F8A54B-7601-4B9E-9FFE-AD4C78CEF455}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D09C8DC4-E7E3-431A-BEB9-31AE10181216}

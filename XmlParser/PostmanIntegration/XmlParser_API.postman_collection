@@ -93,7 +93,7 @@
 					"response": []
 				},
 				{
-					"name": "Parse Expense Claim - Empty Message - Get Validation Errors",
+					"name": "Parse Expense Claim - Empty Message",
 					"event": [
 						{
 							"listen": "test",
@@ -162,6 +162,90 @@
 						"body": {
 							"mode": "raw",
 							"raw": "{\r\n    \"message\": \"Hi Antoine,\\nPlease create a reservation at the <vendor>Viaduct Steakhouse</vendor> our\\n<description>development team’s project end celebration dinner</description> on <date>Thursday 27 April 2017</date>. We expect to arrive around 7.15pm. Approximately 12 people but I’ll\\nconfirm exact numbers closer to the day.\\nRegards,\\nIvan\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{protocol}}://{{domain}}/{{apiRoute}}/reservation",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"{{apiRoute}}",
+								"reservation"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Parse Reservation - Invalid Date",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d15d230f-e6b3-471d-9a88-1b746b625d8f",
+								"exec": [
+									"pm.test(\"Check Response code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"message\": \"Hi Antoine,\\nPlease create a reservation at the <vendor>Viaduct Steakhouse</vendor> our\\n<description>development team’s project end celebration dinner</description> on <date>Tuesday 27 April 2017</date>. We expect to arrive around 7.15pm. Approximately 12 people but I’ll\\nconfirm exact numbers closer to the day.\\nRegards,\\nIvan\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{protocol}}://{{domain}}/{{apiRoute}}/reservation",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"{{apiRoute}}",
+								"reservation"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Parse Reservation - Empty Message",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4292b074-85e4-4a88-9d88-c17d93724032",
+								"exec": [
+									"pm.test(\"Check Response code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"message\": \"\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
